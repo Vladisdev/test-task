@@ -6,19 +6,20 @@ import { ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { setStateValue } from '../../redux/slices/authSlice';
-import { RootState } from '../../redux/store';
+import { AppDispatch, RootState } from '../../redux/store';
 
 export const Login = () => {
 	const { login, password } = useSelector((state: RootState) => state.auth);
-	const dispatch = useDispatch();
+	const dispatch: AppDispatch = useDispatch();
 
-	const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+	const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
 		const { name, value } = event.target;
 
 		dispatch(setStateValue({ name, value }));
 	};
 
-	const isButtonDisabled = login !== 'developer12' || password !== '123456';
+	const isButtonDisabled: boolean =
+		login !== 'developer12' || password !== '123456';
 
 	return (
 		<form className='form'>
